@@ -483,7 +483,7 @@ bool esp_efuse_utility_is_correct_written_data(esp_efuse_block_t block, unsigned
 
     bool correct_written_data = memcmp(w_data, r_data, r_data_len) == 0;
     if (correct_written_data) {
-        ESP_LOGI(TAG, "BURN BLOCK%d - OK (write block == read block)", block);
+        ESP_EARLY_LOGI(TAG, "BURN BLOCK%d - OK (write block == read block)", block);
         return true;
     }
 
@@ -495,9 +495,9 @@ bool esp_efuse_utility_is_correct_written_data(esp_efuse_block_t block, unsigned
         }
     }
     if (correct_written_data) {
-        ESP_LOGI(TAG, "BURN BLOCK%d - OK (all write block bits are set)", block);
+        ESP_EARLY_LOGI(TAG, "BURN BLOCK%d - OK (all write block bits are set)", block);
     } else {
-        ESP_LOGE(TAG, "BURN BLOCK%d - ERROR (written bits != read bits)", block);
+        ESP_EARLY_LOGE(TAG, "BURN BLOCK%d - ERROR (written bits != read bits)", block);
     }
     return correct_written_data;
 }
