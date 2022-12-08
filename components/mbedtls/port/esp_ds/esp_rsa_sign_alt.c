@@ -14,7 +14,6 @@
 
 #include "esp_ds.h"
 #include "rsa_sign_alt.h"
-#include "esp_memory_utils.h"
 
 #ifdef CONFIG_IDF_TARGET_ESP32S2
 #include "esp32s2/rom/digital_signature.h"
@@ -85,10 +84,7 @@ esp_err_t esp_ds_init_data_ctx(esp_ds_data_ctx_t *ds_data)
     s_esp_ds_hmac_key_id = (hmac_key_id_t) ds_data->efuse_key_id;
 
     const unsigned rsa_length_int = (ds_data->rsa_length_bits / 32) - 1;
-    if (esp_ptr_byte_accessible(s_ds_data)) {
-        /* calculate the rsa_length in terms of esp_digital_signature_length_t which is required for the internal DS API */
-        s_ds_data->rsa_length = rsa_length_int;
-    } else if (s_ds_data->rsa_length != rsa_length_int) {
+    if (s_ds_data->rsa_length != rsa_length_int) {
         /*
          * Configuration data is most likely from DROM segment and it
          * is not properly formatted for all parameters consideration.
