@@ -254,7 +254,7 @@ int esp_ds_rsa_sign( void *ctx,
                              s_esp_ds_hmac_key_id,
                              &esp_ds_ctx);
     if (ds_r != ESP_OK) {
-        ESP_LOGE(TAG, "Error in esp_ds_start_sign, returned %d ", ds_r);
+        ESP_LOGE(TAG, "Error in esp_ds_start_sign, returned %x ", (unsigned int)ds_r);
         heap_caps_free(signature);
         return -1;
     }
