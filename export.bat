@@ -26,6 +26,7 @@ echo Setting IDF_PATH: %IDF_PATH%
 echo.
 
 set "OLD_PATH=%PATH%"
+set IDF_TOOLS_PATH=C:\Users\Nathan.Phillips\.espressif4.4.2
 echo Adding ESP-IDF tools to PATH...
 :: Export tool paths and environment variables.
 :: It is possible to do this without a temporary file (running idf_tools.py from for /r command),
