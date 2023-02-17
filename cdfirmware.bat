@@ -1,0 +1,1 @@
+cd ..\..\source\repos\CloserPets\firmware
