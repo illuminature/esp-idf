@@ -497,6 +497,8 @@
 #define SLIP_DEBUG                       LWIP_DBG_OFF
 #endif
 
+#define SLIPIF_THREAD_STACKSIZE 2048
+
 
 #endif
 
@@ -786,6 +788,16 @@
 #warning LWIP_HOOK_FILENAME is used for IDF default hooks. Please use ESP_IDF_LWIP_HOOK_FILENAME to insert additional hook
 #endif
 #define LWIP_HOOK_FILENAME              "lwip_default_hooks.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+  typedef struct ip4_addr ip4_addr_t;
+  struct netif * ip4_route_src_hook(const ip4_addr_t * src, const ip4_addr_t * dest);
+#ifdef __cplusplus
+}
+#endif
+
 #define LWIP_HOOK_IP4_ROUTE_SRC         ip4_route_src_hook
 
 /*
@@ -998,7 +1010,7 @@
 #define ESP_HAS_SELECT                  1
 #define ESP_AUTO_RECV                   1
 #define ESP_GRATUITOUS_ARP              CONFIG_LWIP_ESP_GRATUITOUS_ARP
-#define ESP_IP4_ROUTE                   1
+#define ESP_IP4_ROUTE                   0
 #define ESP_AUTO_IP                     1
 #define ESP_PBUF                        1
 #define ESP_PPP                         1
