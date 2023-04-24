@@ -24,8 +24,8 @@
 #define UNITY_PRINT_TAB() UNITY_OUTPUT_CHAR('\t')
 
 // Pointers to the head and tail of linked list of test description structs:
-static test_desc_t *s_unity_tests_first = NULL;
-static test_desc_t *s_unity_tests_last = NULL;
+test_desc_t *s_unity_tests_first = NULL;
+test_desc_t *s_unity_tests_last = NULL;
 
 void unity_testcase_register(test_desc_t *desc)
 {
